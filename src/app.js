@@ -1,19 +1,41 @@
-import express from 'express';
-import { createClient } from 'redis';
-import dotenv from 'dotenv';
-import ringsOfPowerController from './rings-of-power/rings-of-power-controller.js';
+import express from "express";
+import mongoose, { mongo } from "mongoose";
+import { createClient } from "redis";
+import dotenv from "dotenv";
+import ringsOfPowerController from "./ringsOfPower/ringOfPower.controller.js";
 
 dotenv.config();
 
-const app = express();
-const redisClient = createClient({
-  url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
-});
+const mongoConnection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGODB_URL);
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("Error connecting to MongoDB", error.message);
+  }
+};
 
-await redisClient.connect();
+const redisConnection = async () => {
+  const redisClient = createClient({
+    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`,
+  });
+
+  try {
+    await redisClient.connect();
+    console.log("Connected to Redis");
+  } catch (error) {
+    console.error("Error connecting to Redis", error.message);
+  }
+};
+
+const app = express();
+
+mongoConnection();
+redisConnection();
 
 app.use(express.json());
-app.use('/api/rings', ringsOfPowerController(redisClient));
+
+app.use("/api/rings", ringsOfPowerController(redisClient));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
