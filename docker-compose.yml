@@ -9,5 +9,30 @@ services:
     volumes:
       - redis-data:/data
 
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  app:
+    build: .
+    container_name: lotr-api
+    ports:
+      - "3000:3000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - MONGO_URL=mongodb://mongodb:27017/lotrdb
+    depends_on:
+      - redis
+      - mongodb
+    volumes:
+      - .:/usr/src/app
+    command: yarn start
+
 volumes:
   redis-data:
+  mongo-data:
