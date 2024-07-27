@@ -23,6 +23,7 @@ const redisConnection = async () => {
   try {
     await redisClient.connect();
     console.log('Connected to Redis');
+    return redisClient;
   } catch (error) {
     console.error('Error connecting to Redis', error.message);
   }
@@ -31,12 +32,10 @@ const redisConnection = async () => {
 const app = express();
 
 mongoConnection();
-redisConnection();
+const redisClient = await redisConnection();
 
 app.use(express.json());
-app.use(ringsOfPowerController());
-
-//app.use("/api/rings", ringsOfPowerController(redisClient));
+app.use(ringsOfPowerController(redisClient));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

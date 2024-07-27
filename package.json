@@ -8,7 +8,9 @@
   "scripts": {
     "start": "node src/app.js",
     "generate:docs": "yarn dlx aglio -i apiary.apib -o apiary.html",
-    "test": "mocha --recursive ./test"
+    "test": "mocha --recursive ./test",
+    "cannon": "npx autocannon -c 500 -d 20 -w 10 --renderStatusCodes --latency --warmup [ -c 1 -d 2 ] localhost:3000/rings/without-redis",
+    "cannon-redis": "npx autocannon -c 500 -d 20 -w 10 --renderStatusCodes --latency --warmup [ -c 1 -d 2 ] localhost:3000/rings"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
@@ -19,6 +21,7 @@
   "packageManager": "yarn@4.3.1+sha512.af78262d7d125afbfeed740602ace8c5e4405cd7f4735c08feb327286b2fdb2390fbca01589bfd1f50b1240548b74806767f5a063c94b67e431aabd0d86f7774",
   "devDependencies": {
     "@jest/globals": "^29.7.0",
+    "autocannon": "^7.15.0",
     "chai": "^5.1.1",
     "jest": "^29.7.0",
     "mocha": "^10.7.0",
