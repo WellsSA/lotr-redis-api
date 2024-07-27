@@ -1,7 +1,7 @@
 import express from 'express';
 import { createClient } from 'redis';
 import dotenv from 'dotenv';
-import ringOfPowersController from './ring-of-powers/ring-of-powers-controller.js';
+import ringsOfPowerController from './rings-of-power/rings-of-power-controller.js';
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ const redisClient = createClient({
 await redisClient.connect();
 
 app.use(express.json());
-app.use('/api/rings', ringOfPowersController(redisClient));
+app.use('/api/rings', ringsOfPowerController(redisClient));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
