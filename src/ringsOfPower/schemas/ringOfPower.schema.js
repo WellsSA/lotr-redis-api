@@ -1,11 +1,11 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const RingOfPowerSchema = new Schema(
   {
-    name: { type: String, required: true },
-    power: { type: String, required: true },
+    name: { type: String },
+    power: { type: String },
   },
   { timestamps: true }
 );
 
-export default model("RingOfPower", RingOfPowerSchema);
+export default model('RingOfPower', RingOfPowerSchema);

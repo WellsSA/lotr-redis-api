@@ -1,17 +1,17 @@
-import express from "express";
-import mongoose, { mongo } from "mongoose";
-import { createClient } from "redis";
-import dotenv from "dotenv";
-import ringsOfPowerController from "./ringsOfPower/ringOfPower.controller.js";
+import express from 'express';
+import mongoose from 'mongoose';
+import { createClient } from 'redis';
+import dotenv from 'dotenv';
+import ringsOfPowerController from './ringsOfPower/ringOfPower.controller.js';
 
 dotenv.config();
 
 const mongoConnection = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URL);
-    console.log("Connected to MongoDB");
+    console.log('Connected to MongoDB');
   } catch (error) {
-    console.error("Error connecting to MongoDB", error.message);
+    console.error('Error connecting to MongoDB', error.message);
   }
 };
 
@@ -22,9 +22,9 @@ const redisConnection = async () => {
 
   try {
     await redisClient.connect();
-    console.log("Connected to Redis");
+    console.log('Connected to Redis');
   } catch (error) {
-    console.error("Error connecting to Redis", error.message);
+    console.error('Error connecting to Redis', error.message);
   }
 };
 
@@ -34,8 +34,9 @@ mongoConnection();
 redisConnection();
 
 app.use(express.json());
+app.use(ringsOfPowerController());
 
-app.use("/api/rings", ringsOfPowerController(redisClient));
+//app.use("/api/rings", ringsOfPowerController(redisClient));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

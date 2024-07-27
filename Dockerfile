@@ -2,7 +2,7 @@
 FROM node:22.5.1
 
 # Create and change to the app directory.
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app  # Corrigido para incluir a barra inicial
 
 # Install app dependencies.
 COPY package.json yarn.lock ./

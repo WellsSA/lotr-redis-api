@@ -1,8 +1,8 @@
-import Ring from "./ringOfPower.model.js";
+import Ring from "./schemas/ringOfPower.schema.js";
 
 const createRing = async (ring) => {
-  const newRing = new Ring(ring);
-  await newRing.save();
+  const newRing = await Ring.create(ring);
+  return newRing;
 };
 
 const findRings = async () => {
