@@ -1,0 +1,30 @@
+FORMAT: 1A
+HOST: http://localhost:3000/api
+
+# Lord of the Rings API
+
+## Rings Collection [/rings]
+
+### List all Rings [GET]
++ Response 200 (application/json)
+    + Body
+    [
+      {
+        "name": "One Ring",
+        "power": "Invisibility"
+      }
+    ]
+
+### Create a New Ring [POST]
++ Request (application/json)
+    + Body
+    {
+      "name": "One Ring",
+      "power": "Invisibility"
+    }
+
++ Response 201 (application/json)
+    + Body
+    {
+      "message": "Ring added successfully"
+    }
