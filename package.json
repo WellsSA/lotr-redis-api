@@ -7,7 +7,6 @@
   "type": "module",
   "scripts": {
     "start": "node src/app.js",
-    "generate:docs": "yarn dlx aglio -i apiary.apib -o apiary.html",
     "cannon": "npx autocannon -c 500 -d 20 -w 10 --renderStatusCodes --latency --warmup [ -c 1 -d 2 ] localhost:3000/rings/without-redis",
     "cannon-redis": "npx autocannon -c 500 -d 20 -w 10 --renderStatusCodes --latency --warmup [ -c 1 -d 2 ] localhost:3000/rings"
   },
