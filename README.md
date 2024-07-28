@@ -44,9 +44,6 @@ The API will be running at `http://localhost:3000`.
 
 `http://localhost:3000/api`
 
-### Endpoints
-
-Open the [HTML Docs](/apiary.html) on your browser.
 
 ## Running Tests
 

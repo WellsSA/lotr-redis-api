@@ -6,9 +6,7 @@
   "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "start": "node src/app.js",
-    "cannon": "npx autocannon -c 500 -d 20 -w 10 --renderStatusCodes --latency --warmup [ -c 1 -d 2 ] localhost:3000/rings/without-redis",
-    "cannon-redis": "npx autocannon -c 500 -d 20 -w 10 --renderStatusCodes --latency --warmup [ -c 1 -d 2 ] localhost:3000/rings"
+    "start": "node src/app.js"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
@@ -16,8 +14,5 @@
     "mongoose": "^8.5.1",
     "redis": "^4.6.5"
   },
-  "packageManager": "yarn@4.3.1+sha512.af78262d7d125afbfeed740602ace8c5e4405cd7f4735c08feb327286b2fdb2390fbca01589bfd1f50b1240548b74806767f5a063c94b67e431aabd0d86f7774",
-  "devDependencies": {
-    "autocannon": "^7.15.0"
-  }
+  "packageManager": "yarn@4.3.1+sha512.af78262d7d125afbfeed740602ace8c5e4405cd7f4735c08feb327286b2fdb2390fbca01589bfd1f50b1240548b74806767f5a063c94b67e431aabd0d86f7774"
 }
